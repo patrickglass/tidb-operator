@@ -7,15 +7,14 @@ spec:
     spec:
       initContainers:
       - name: init
-        image: sysbench
+        image: docker.io/patrickglass526/sysbench:1.1.0
         command:
         - /bin/sh
         - -c
         - |-
           MYSQL_OPTS="-h${HOST} -P${PORT} -u${USER}"
-          if [ -n "$PASSWORD" ]; then
-            MYSQL_OPTS+=" -p${PASSWORD}"
-          fi
+          export MYSQL_PWD=${PASSWORD}
+          export MYSQL_HOST=${HOST}
           mysql $MYSQL_OPTS -Nse "create database if not exists ${DB};"
         env:
         - name: HOST
@@ -38,7 +37,6 @@ spec:
             configMapKeyRef:
               key: mysql-password
               name: sysbench-conf
-              optional: true
         - name: DB
           valueFrom:
             configMapKeyRef:

@@ -1,7 +1,15 @@
-bases:
-- ../base
-
-patchesStrategicMerge:
-- clean.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
 nameSuffix: -clean
+
+resources:
+- ../base
+
+patches:
+- path: clean.yaml
+
+# images:
+# - name: sysbench
+#   newName: docker.io/patrickglass526/sysbench
+#   newTag: 1.1.0

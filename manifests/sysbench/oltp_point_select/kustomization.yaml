@@ -1,8 +1,10 @@
-bases:
-- ../base
-
-patchesStrategicMerge:
-- oltp-point-select.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
 nameSuffix: -oltp-point-select
 
+resources:
+- ../base
+
+patches:
+- path: oltp-point-select.yaml

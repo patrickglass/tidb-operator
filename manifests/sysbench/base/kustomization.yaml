@@ -1,20 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 resources:
 - sysbench.yaml
 
 configMapGenerator:
-  - name: sysbench-conf
-    files:
-    - sysbench.conf
-    envs:
-    - sysbench.conf
-  - name: sysbench-options
-    envs:
-    - options.conf
+- name: sysbench-conf
+  files:
+  - sysbench.conf
+  envs:
+  - sysbench.conf
+  
+- envs:
+  - options.conf
+  name: sysbench-options
     
 generatorOptions:
   disableNameSuffixHash: true
     
 images:
 - name: sysbench
-  newName: uhub.ucloud.cn/pingcap/sysbench
-  newTag: latest
+  newName: docker.io/patrickglass526/sysbench
+  newTag: 1.1.0

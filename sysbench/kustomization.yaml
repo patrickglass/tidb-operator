@@ -1,0 +1,4 @@
+resources:
+- ../manifests/sysbench
+commonAnnotations:
+  tidb-host: shared-tidb

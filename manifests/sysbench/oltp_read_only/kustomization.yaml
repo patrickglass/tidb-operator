@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-nameSuffix: -warmup
+nameSuffix: -oltp-read-only
 
 resources:
 - ../base
 
 patches:
-- path: warmup.yaml
+- path: oltp-read-only.yaml
